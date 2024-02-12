@@ -10,7 +10,7 @@ function Todo() {
 
     return (
         <div className="todo">
-            <Header title="WebCV" />
+            <Header title="todo" />
             <AddInput 
                 setTodos={setTodos}
                 todos={todos}

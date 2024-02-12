@@ -7,7 +7,7 @@ export default function Header({
     return (
         <>
             <h1 className="header" data-testid="header-1">{title}</h1>
-            <h1 title='Header' className="header"></h1>
+            {/* <h1 title='Header' className="header"></h1> */}
         </>
     )
 }
