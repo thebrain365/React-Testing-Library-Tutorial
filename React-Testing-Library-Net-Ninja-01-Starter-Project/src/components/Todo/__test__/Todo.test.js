@@ -38,4 +38,13 @@ describe("Todo", () => {
         const divElement = screen.getAllByTestId(/task-container/i);
         expect(divElement.length).toBe(3);
     })
+
+    test("should render the task without the todo-item-active class", () => {
+        render(<MockTodo></MockTodo>);
+
+        addTask(["Go shopping"])
+
+        const divElement = screen.getByText(/Go shopping/i);
+        expect(divElement).not.toHaveClass("todo-item-active");
+    })
 })
