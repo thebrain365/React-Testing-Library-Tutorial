@@ -10,16 +10,32 @@ const MockTodo = () => {
     )
 }
 
+const addTask = (tasks) => {
+    const inputElement = screen.getByPlaceholderText(/Add a new task here.../i);
+    const buttonElement = screen.getByRole("button", { name: /Add/i });
+
+    tasks.forEach(task => {
+        fireEvent.change(inputElement, { target: { value: task } });
+        fireEvent.click(buttonElement);
+    });
+}
+
 describe("Todo", () => {
     test("should render the todo on the todo list when add button is clicked", () => {
         render(<MockTodo></MockTodo>);
-        const inputElement = screen.getByPlaceholderText(/Add a new task here.../i);
-        const buttonElement = screen.getByRole("button", { name: /Add/i });
-        
-        fireEvent.change(inputElement, { target: { value: "Go shopping" } });
-        fireEvent.click(buttonElement);
+
+        addTask(["Go shopping"])
 
         const divElement = screen.getByText(/Go shopping/i);
         expect(divElement).toBeInTheDocument();
+    })
+
+    test("should render the correct number of todos on the todo list", () => {
+        render(<MockTodo></MockTodo>);
+
+        addTask(["Go shopping", "Go ballin", "Go get money"])
+
+        const divElement = screen.getAllByTestId(/task-container/i);
+        expect(divElement.length).toBe(3);
     })
 })
