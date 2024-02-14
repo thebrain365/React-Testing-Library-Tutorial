@@ -24,7 +24,7 @@ describe("Todo", () => {
     test("should render the todo on the todo list when add button is clicked", () => {
         render(<MockTodo></MockTodo>);
 
-        addTask(["Go shopping"])
+        addTask(["Go shopping"]);
 
         const divElement = screen.getByText(/Go shopping/i);
         expect(divElement).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe("Todo", () => {
     test("should render the correct number of todos on the todo list", () => {
         render(<MockTodo></MockTodo>);
 
-        addTask(["Go shopping", "Go ballin", "Go get money"])
+        addTask(["Go shopping", "Go ballin", "Go get money"]);
 
         const divElement = screen.getAllByTestId(/task-container/i);
         expect(divElement.length).toBe(3);
@@ -42,9 +42,19 @@ describe("Todo", () => {
     test("should render the task without the todo-item-active class", () => {
         render(<MockTodo></MockTodo>);
 
-        addTask(["Go shopping"])
+        addTask(["Go shopping"]);
 
         const divElement = screen.getByText(/Go shopping/i);
         expect(divElement).not.toHaveClass("todo-item-active");
+    })
+
+    test("task should have the todo-item-active class when clicked", () => {
+        render(<MockTodo></MockTodo>);
+
+        addTask(["Go shopping"]);
+        const divElement = screen.getByText(/Go shopping/i);
+        fireEvent.click(divElement);
+
+        expect(divElement).toHaveClass("todo-item-active");
     })
 })
