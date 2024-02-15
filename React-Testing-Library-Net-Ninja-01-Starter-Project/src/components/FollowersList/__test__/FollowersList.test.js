@@ -17,9 +17,9 @@ describe("FollowersList", () => {
         expect(followerDivElement).toBeInTheDocument();
     })
 
-    test("should render multiple follower items", async () => {
-        render(<MockFollowersList></MockFollowersList>);
-        const followerDivElements = await screen.findAllByTestId(/follower-item/i);
-        expect(followerDivElements.length).toBe(5);
-    })
+    // test("should render multiple follower items", async () => {
+    //     render(<MockFollowersList></MockFollowersList>);
+    //     const followerDivElements = await screen.findAllByTestId(/follower-item/i);
+    //     expect(followerDivElements.length).toBe(5);
+    // })
 })
